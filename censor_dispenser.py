@@ -44,6 +44,8 @@ def censor_two(body_of_text, proprietary_terms):
 """
 
 def censor_two(body_of_text, proprietary_terms): 
+  print(body_of_text)
+  print("\n\n")
   split_lines = body_of_text.split('\n')
   split_words = []
   for line in split_lines:
@@ -64,8 +66,17 @@ def censor_two(body_of_text, proprietary_terms):
   for line in split_words:
     join_words.append(' '.join(line))
   join_lines = "\n".join(join_words)
+  
+  terms_replaced = []
+  terms_replaced.append(join_lines)
+  for t in range(len(proprietary_terms)):
+    term_index = terms_replaced[t].find(proprietary_terms[t])
+    print(proprietary_terms[t] + ":" + str(term_index))
+    terms_replaced.append(terms_replaced[t].replace(' '+proprietary_terms[t]+' '," XXX "))
     
-  return join_lines
+    
+    
+  return terms_replaced[-1]
         
       
 
